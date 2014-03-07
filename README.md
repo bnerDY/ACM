@@ -3,4 +3,9 @@
 
 Repository for algorithm practice
 
-Mostly the program is written in C
+
+Programs are written in C.
+
+
+
+Copyright (c) 2014, Martin Yu(bnerDY) All rights reserved.
