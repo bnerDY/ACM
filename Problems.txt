@@ -1,0 +1,8 @@
+Problems for ACM
+
+
+1000:
+	Input
+	Two integer a,b (0<=a,b<=10)
+	Output
+	Output a+b
