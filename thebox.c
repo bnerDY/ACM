@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 enum ErrorCode {
     SHOW_USAGE = 1, BAD_MAX_STEPS, MISSING_MAP, BAD_MAP_DIM,
     BAD_MAP_CHAR, MAP_WRONG_SIZE, MISSING_LETTERS
