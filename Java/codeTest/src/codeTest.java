@@ -1,62 +1,125 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class codeTest {
-//    Q1：
-//    Given two lists of integers, write a function that returns a list that contains only the intersection
-//    (elements that occur in both lists) of the two lists. The returned list should only contain unique integers,
-//    no duplicates.For example, [4, 2, 73, 11, -5] and [-5, 73, -1, 9, 9, 4, 7]
-//    would return the list [-5, 4, 73] in no particular order
-    public static List mergeUnique(int[] a, int[] b){
-        List res = new ArrayList();
-        for(int i = 0; i< a.length; i++) {
-            for (int j = 0; j < b.length; j++) {
-                if(a[i]==b[j]) {
-                    res.add(a[i]);
+
+    //Amazon codility
+    //Task1
+    public static int checkMinFlag(int[][] flag, int[][] A, int n, int m) {
+        int[][] direct = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        int N = flag.length;
+        int M = flag[0].length;
+        int mintag = flag[n][m];
+        for (int i = 0; i < 4; i++) {
+            //System.out.println(n+direct[i][0]+" "+m+direct[i][1]);
+            if (n + direct[i][0] < N && n + direct[i][0] >= 0 && m + direct[i][1] < M && m + direct[i][1] >= 0 && A[n][m] == A[n + direct[i][0]][m + direct[i][1]]) {
+                int ff = flag[n + direct[i][0]][m + direct[i][1]];
+                if (ff < mintag) mintag = ff;
+            }
+        }
+        return mintag;
+    }
+
+    public static void setMinFlag(int[][] flag, int[][] A, int n, int m, int mintag) {
+        int[][] direct = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        flag[n][m] = mintag;
+        int N = flag.length;
+        int M = flag[0].length;
+        for (int i = 0; i < 4; i++) {
+            if (n + direct[i][0] < N && n + direct[i][0] >= 0 && m + direct[i][1] < M && m + direct[i][1] >= 0 && A[n][m] == A[n + direct[i][0]][m + direct[i][1]]) {
+                flag[n + direct[i][0]][m + direct[i][1]] = mintag;
+
+            }
+        }
+    }
+
+    public static int solutionMatrix(int[][] A) {
+        // write your code in Java SE 8
+        int num = 0;
+        int N = A.length;
+        int M = A[0].length;
+        int flag[][] = new int[N][M];
+        int index = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                flag[i][j] = index++;
+            }
+        }
+        //System.out.println(index);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                int minf = checkMinFlag(flag, A, i, j);
+                setMinFlag(flag, A, i, j, minf);
+                //System.out.print(minf+"  ");
+            }
+            //System.out.println();
+        }
+        Set<Integer> ts = new TreeSet<Integer>();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                ts.add(flag[i][j]);
+            }
+        }
+        //System.out.println(ts.size());
+        return ts.size();
+    }
+    //Task2
+    public static int solutionList(int[] A) {
+        // write your code in Java SE 8
+        int res = 0;
+        int tmp = 0;
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A.length; j++) {
+                tmp = A[i]+A[j]+j-i;
+                if(tmp > res){
+                    res = tmp;
                 }
             }
         }
         return res;
     }
-//
-//    Q2：
-//    Given a binary tree, write a function that returns true if and only if it is a binary search tree.
-//    Your solution will be evaluated on correctness, runtime complexity (big-O), and adherence to coding best practices.
+    class Tree {
+        public int x;
+        public Tree l;
+        public Tree r;
+    }
+    //Task 3
+    public int recTree(Tree T, int maxI, int minI) {
+        if (T.x < minI) minI = T.x;
+        if (T.x > maxI) maxI = T.x;
+        int templ = 0;
+        int tempr = 0;
+        if (T.l != null) {
+            templ = recTree(T.l, maxI, minI);
+        }
+        if (T.r != null) {
+            tempr = recTree(T.r, maxI, minI);
+        }
+        if (T.l == null & T.r == null) {
+            return maxI - minI;
+        }
+        if (templ > tempr) return templ;
+        return tempr;
+
+    }
+
+    public int solutionTree(Tree T) {
+
+        int max = T.x, min = T.x;
+        int maxlen = recTree(T, max, min);
+        return maxlen;
+    }
 
 
-//    Q3：
-//    Find the K closest points to the origin in 2D plane, given an array containing N points.
-//    You can assume K is much smaller than N and N is very large. You need only use standard math operators
-//    (addition, subtraction, multiplication, and division).
 
-
-//    Q4:
-//    Find loop in the given linked list
-
-
-//    Q5:
-//    Give student result structure:
-//    struct Result{
-//        int studentID;
-//        string data;
-//        int testScore;
-//    }
-//
-//    给一个result的vector，返回一个map<ID, highest 5 testScore>
-
-
-//    Q6： Most frequent number in a list.
-
-
-//    Q7：Merge 2 sorted linkedList
 
     public static void main(String[] args) {
-        // Q1
         int[] a = {4, 2, 73, 11, -5};
-        int[] b = {-5, 73, -1, 9, 9, 4, 7};
-        List res = mergeUnique(a,b);
-        System.out.println(res);
 
+        int index = solutionList(a);
+        System.out.println(index);
 
+        int[][] A={{5,4,4},{4,3,4},{3,2,4},{2,2,2},{3,3,4},{1,4,4},{4,1,1}};
+        int countries = solutionMatrix(A);
+        System.out.println(countries);
     }
 }
