@@ -77,13 +77,26 @@ public class codeTest {
         }
         return res;
     }
-    class Tree {
+
+    static class Tree {
+        Tree(int X) {
+            this.x = X;
+            l = null;
+            r = null;
+        }
+
+        Tree(int X, Tree l, Tree r) {
+            this.x = X;
+            this.l = l;
+            this.r = r;
+        }
+
         public int x;
         public Tree l;
         public Tree r;
     }
     //Task 3
-    public int recTree(Tree T, int maxI, int minI) {
+    public static int recTree(Tree T, int maxI, int minI) {
         if (T.x < minI) minI = T.x;
         if (T.x > maxI) maxI = T.x;
         int templ = 0;
@@ -102,24 +115,34 @@ public class codeTest {
 
     }
 
-    public int solutionTree(Tree T) {
-
+    public static int solutionTree(Tree T) {
         int max = T.x, min = T.x;
         int maxlen = recTree(T, max, min);
         return maxlen;
     }
 
-
-
-
     public static void main(String[] args) {
-        int[] a = {4, 2, 73, 11, -5};
-
-        int index = solutionList(a);
-        System.out.println(index);
-
+        //Task1
         int[][] A={{5,4,4},{4,3,4},{3,2,4},{2,2,2},{3,3,4},{1,4,4},{4,1,1}};
         int countries = solutionMatrix(A);
         System.out.println(countries);
+        //Task2
+        int[] a = {4, 2, 73, 11, -5};
+        int index = solutionList(a);
+        System.out.println(index);
+        //Task3
+        Tree t1= new Tree(1);
+        Tree t3= new Tree(3);
+        Tree t7= new Tree(7,t1,null);
+        Tree t4= new Tree(4,t3,null);
+        Tree t9= new Tree(9,t7,t4);
+
+        Tree t2= new Tree(2);
+        Tree t12= new Tree(12);
+        Tree t8= new Tree(8,t12,t2);
+
+        Tree t5= new Tree(5,t8,t9);
+
+        System.out.println(solutionTree(t5));
     }
 }
