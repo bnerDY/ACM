@@ -62,6 +62,7 @@ public class codeTest {
         //System.out.println(ts.size());
         return ts.size();
     }
+
     //Task2
     public static int solutionList(int[] A) {
         // write your code in Java SE 8
@@ -69,8 +70,8 @@ public class codeTest {
         int tmp = 0;
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < A.length; j++) {
-                tmp = A[i]+A[j]+j-i;
-                if(tmp > res){
+                tmp = A[i] + A[j] + j - i;
+                if (tmp > res) {
                     res = tmp;
                 }
             }
@@ -95,6 +96,7 @@ public class codeTest {
         public Tree l;
         public Tree r;
     }
+
     //Task 3
     public static int recTree(Tree T, int maxI, int minI) {
         if (T.x < minI) minI = T.x;
@@ -123,7 +125,7 @@ public class codeTest {
 
     public static void main(String[] args) {
         //Task1
-        int[][] A={{5,4,4},{4,3,4},{3,2,4},{2,2,2},{3,3,4},{1,4,4},{4,1,1}};
+        int[][] A = {{5, 4, 4}, {4, 3, 4}, {3, 2, 4}, {2, 2, 2}, {3, 3, 4}, {1, 4, 4}, {4, 1, 1}};
         int countries = solutionMatrix(A);
         System.out.println(countries);
         //Task2
@@ -131,17 +133,17 @@ public class codeTest {
         int index = solutionList(a);
         System.out.println(index);
         //Task3
-        Tree t1= new Tree(1);
-        Tree t3= new Tree(3);
-        Tree t7= new Tree(7,t1,null);
-        Tree t4= new Tree(4,t3,null);
-        Tree t9= new Tree(9,t7,t4);
+        Tree t1 = new Tree(1);
+        Tree t3 = new Tree(3);
+        Tree t7 = new Tree(7, t1, null);
+        Tree t4 = new Tree(4, t3, null);
+        Tree t9 = new Tree(9, t7, t4);
 
-        Tree t2= new Tree(2);
-        Tree t12= new Tree(12);
-        Tree t8= new Tree(8,t12,t2);
+        Tree t2 = new Tree(2);
+        Tree t12 = new Tree(12);
+        Tree t8 = new Tree(8, t12, t2);
 
-        Tree t5= new Tree(5,t8,t9);
+        Tree t5 = new Tree(5, t8, t9);
 
         System.out.println(solutionTree(t5));
     }
