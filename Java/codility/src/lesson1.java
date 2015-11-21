@@ -4,7 +4,9 @@
 public class lesson1 {
     /**
      * Time Complexity.
-     * Lesson1.
+     * Lesson1. Calculate the minimum difference among the list.
+     * input [3,1,2,4,3]
+     * output 1
      */
     public static int tapeEquilibrium(int[] A) {
         int leftSum = A[0];
