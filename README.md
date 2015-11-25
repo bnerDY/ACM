@@ -3,7 +3,7 @@
 Repository for algorithm practice
 
 
-Programs are written in C or Java.
+Programs are written in C, Python or Java.
 
 
 
