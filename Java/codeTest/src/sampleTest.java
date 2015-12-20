@@ -54,6 +54,10 @@ public class sampleTest {
 
 
     //    Q7：Merge 2 sorted linkedList
+
+
+
+
     public static void main(String[] args) {
         // Q1
         int[] a = {4, 2, 73, 11, -5};
