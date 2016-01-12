@@ -28,6 +28,8 @@ public class lesson3 {
     }
 
     /**
+     * TapeEquilibrium
+     *
      * Calculate the minimum difference among the list.
      * input [3,1,2,4,3]
      * output 1
