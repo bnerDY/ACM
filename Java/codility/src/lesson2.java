@@ -37,6 +37,18 @@ public class lesson2 {
         return res;
     }
 
+    /**
+     * Better solution
+     * @param args
+     */
+//    public int OddOccurrencesInArray(int[] A) {
+//        int unpaired = 0;
+//        for (int number : A) {
+//            unpaired ^= number;
+//        }
+//        return unpaired;
+//    }
+
     public static void main(String[] args) {
         int[] a = {9, 3, 9, 3, 9, 7, 9};
         System.out.println(OddOccurrencesInArray(a));
