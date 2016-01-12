@@ -4,8 +4,31 @@
 public class lesson3 {
 
     /**
-     * Time Complexity.
-     * Lesson1. Calculate the minimum difference among the list.
+     *  Time Complexity.
+     *  Lesson3.
+     */
+
+    /**
+     * FrogJmp
+     * Given three integers X, Y and D,
+     * returns the minimal number of jumps from position X to a position equal to or greater than Y.
+     *
+     * For example, given:
+     * X = 10
+     * Y = 85
+     * D = 30
+     * the function should return 3, because the frog will be positioned as follows:
+     * after the first jump, at position 10 + 30 = 40
+     * after the second jump, at position 10 + 30 + 30 = 70
+     * after the third jump, at position 10 + 30 + 30 + 30 = 100
+     */
+    public int frogJmp(int X, int Y, int D){
+        int res = 0;
+        return res;
+    }
+
+    /**
+     * Calculate the minimum difference among the list.
      * input [3,1,2,4,3]
      * output 1
      */
@@ -28,7 +51,7 @@ public class lesson3 {
     public static void main(String[] args) {
         //Test for TapeEquilibrium.
         int[] list = {3, 1, 2, 4, 3};
-        int [] test = {-1000, 1000};
+        int[] test = {-1000, 1000};
         int tape = tapeEquilibrium(list);
         int test1 = tapeEquilibrium(test);
         System.out.println(test1);

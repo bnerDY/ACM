@@ -37,10 +37,7 @@ public class lesson2 {
         return res;
     }
 
-    /**
-     * Better solution
-     * @param args
-     */
+//    Better solution
 //    public int OddOccurrencesInArray(int[] A) {
 //        int unpaired = 0;
 //        for (int number : A) {
