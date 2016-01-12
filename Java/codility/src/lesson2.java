@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Martin on 15/11/2015.
  */
@@ -14,13 +17,28 @@ public class lesson2 {
      * the element at index 5 has value 7 and is unpaired.
      *
      */
-    public int OddOccurrencesInArray(int[] A){
+    public static int OddOccurrencesInArray(int[] A) {
         int res = 0;
-
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int n : A) {
+            if(map.containsKey(n)){
+                map.put(n, map.get(n).intValue() + 1);
+            }else{
+                map.put(n, 1);
+            }
+        }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+//            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            if(value % 2 != 0){
+                res = entry.getKey();
+            }
+        }
         return res;
     }
 
     public static void main(String[] args) {
-
+        int[] a = {9, 3, 9, 3, 9, 7, 9};
+        System.out.println(OddOccurrencesInArray(a));
     }
 }

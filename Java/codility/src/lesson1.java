@@ -17,9 +17,10 @@ public class lesson1 {
 
         while (N > 0) {
             // get right most bit & shift right
-            r = N & 1;
+            r = N & 1; //AND
+            //System.out.println(r);
+            //System.out.println(N);
             N = N >> 1;
-
             if (0 == r && count >= 0) {
                 count++;
             }
