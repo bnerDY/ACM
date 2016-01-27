@@ -1,6 +1,6 @@
 ###ACM
 ===
-Repository for algorithm practice
+Repository for algorithm and interview practice
 
 
 Programs are written in C, Python or Java.
