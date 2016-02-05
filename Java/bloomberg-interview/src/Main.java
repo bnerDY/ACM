@@ -17,11 +17,11 @@ public class Main {
         return total - sum;
     }
 
-    //given an array of numbers, find the 2 two largest numbers in the array
+    //given an array of numbers, find the second largest numbers in the array
     public static int[] findTwoLargest(int[] A) {
         int[] res = new int[2];
         SortedSet<Integer> set = new TreeSet<Integer>();
-        for (int i: A) {
+        for (int i : A) {
             set.add(i);
         }
         // Remove the maximum value; print the largest remaining item
@@ -32,49 +32,95 @@ public class Main {
         return res;
     }
 
-//    How it's implemented a HashMap?
-
-
     //    the two-sum problem
     //    Given an array of integers and a number, print all the pairs which would add up to that number.
-    public int[] twoSum(int[] numbers, int target) {
+    public static int[] twoSum(int[] numbers, int target) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         int[] result = new int[2];
         for (int i = 0; i < numbers.length; i++) {
-            if (map.containsKey(target - numbers[i])) {
-                result[0] = map.get(target - numbers[i]) + 1;
+            if (map.containsKey(numbers[i])) {
+                result[0] = map.get(numbers[i]) + 1;
                 result[1] = i + 1;
                 break;
-            } else  //update index of numbers[i] to i, if there is duplicate, update to last index
-                map.put(numbers[i], i);
-            //if we are required to find first index of numbers[i] when there are duplicate, use below code
-            //don't use above code
-            //else if(!map.containsKey(numbers[i]))
-            //map.put(numbers[i],i);
+            } else {
+                map.put(target - numbers[i], i);
+            }
         }
         return result;
     }
 //    Remove duplicates from an unsorted singly linked list.
 
 
-//    Languages: Different between Java and C++, garbage collector in java (how it work),
+    //    Languages: Different between Java and C++, garbage collector in java (how it work),
 //    static vs dynamic memory allocation - Data structures: Linked lists, queues, stacks, heap, trees -
 //    OOP: polymorphism, design patterns that I used before - Algorithms: Sorting algorithms I know and there complexity,
-//    how to search for a number in an array (sorted and not sorted cases) - Coding question: reverse a singly linked list
+//    how to search for a number in an array (sorted and not sorted cases)
+//  - Coding question: reverse a singly linked list
 //    What is the role of the JVM ?
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) {
+            val = x;
+        }
+    }
 
-//    What are the primitive data types in Java? What is the JVM and the Garbage Collector? Implement a method to decide whether a string is palindrome or not.
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
 
-//    What is Java Garbage Collection; Difference between an interface and an abstract class
+        //get second node
+        ListNode second = head.next;
+        //set first's next to be null
+        head.next = null;
 
+        ListNode rest = reverseList(second);
+        second.next = head;
 
+        return rest;
+    }
+
+    // maximum subarray
+    public int maxSubArray(int[] A) {
+        int newsum=A[0];
+        int max=A[0];
+        for(int i=1;i<A.length;i++){
+            newsum=Math.max(newsum+A[i],A[i]);
+            max= Math.max(max, newsum);
+        }
+        return max;
+    }
+//    What are the primitive data types in Java? What is the JVM and the Garbage Collector?
+//    Implement a method to decide whether a string is palindrome or not.
+
+    public static boolean isPalindrome(String s) {
+        int n = s.length();
+        for (int i = 0; i < (n / 2) + 1; i++) {
+            if (s.charAt(i) != s.charAt(n - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome1(String str) {
+        return str.equals(new StringBuilder(str).reverse().toString());
+    }
+
+    //    What is Java Garbage Collection; Difference between an interface and an abstract class
     public static void main(String[] args) {
         // write your code here
         int[] test = {-1, 0, 1, 2, 3, 4, 5, 6, 8, 9};
 //        System.out.println(findMissInt(test));
-
-        for (int i = 0; i <findTwoLargest(test).length ; i++) {
+        String temp = "abcd";
+        System.out.println(isPalindrome(temp));
+        for (int i = 0; i < findTwoLargest(test).length; i++) {
             System.out.println(findTwoLargest(test)[i]);
         }
+
+        for (int i = 0; i < twoSum(test, 10).length; i++) {
+            System.out.println(twoSum(test, 10)[i]);
+        }
+
     }
 }
