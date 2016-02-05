@@ -51,15 +51,11 @@ public class Main {
 //    Remove duplicates from an unsorted singly linked list.
 
 
-    //    Languages: Different between Java and C++, garbage collector in java (how it work),
-//    static vs dynamic memory allocation - Data structures: Linked lists, queues, stacks, heap, trees -
-//    OOP: polymorphism, design patterns that I used before - Algorithms: Sorting algorithms I know and there complexity,
-//    how to search for a number in an array (sorted and not sorted cases)
-//  - Coding question: reverse a singly linked list
-//    What is the role of the JVM ?
+//  Coding question: reverse a singly linked list
     public class ListNode {
         int val;
         ListNode next;
+
         ListNode(int x) {
             val = x;
         }
@@ -82,15 +78,15 @@ public class Main {
 
     // maximum subarray
     public int maxSubArray(int[] A) {
-        int newsum=A[0];
-        int max=A[0];
-        for(int i=1;i<A.length;i++){
-            newsum=Math.max(newsum+A[i],A[i]);
-            max= Math.max(max, newsum);
+        int newsum = A[0];
+        int max = A[0];
+        for (int i = 1; i < A.length; i++) {
+            newsum = Math.max(newsum + A[i], A[i]);
+            max = Math.max(max, newsum);
         }
         return max;
     }
-//    What are the primitive data types in Java? What is the JVM and the Garbage Collector?
+
 //    Implement a method to decide whether a string is palindrome or not.
 
     public static boolean isPalindrome(String s) {
@@ -107,7 +103,6 @@ public class Main {
         return str.equals(new StringBuilder(str).reverse().toString());
     }
 
-    //    What is Java Garbage Collection; Difference between an interface and an abstract class
     public static void main(String[] args) {
         // write your code here
         int[] test = {-1, 0, 1, 2, 3, 4, 5, 6, 8, 9};
