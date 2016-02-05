@@ -30,6 +30,8 @@ public class lesson6 {
         return maxTriplet;
     }
 
+
+
     public static void main(String[] args) {
         //Max product
         int[] temp = {-3, 1, 2, -2, 5, 6};

@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Martin on 01/02/2016.
@@ -17,10 +17,18 @@ public class Main {
         return total - sum;
     }
 
-    //    given an array of numbers, find the 2 two largest numbers in the array
-    public int[] findTwoLargest(int[] A) {
+    //given an array of numbers, find the 2 two largest numbers in the array
+    public static int[] findTwoLargest(int[] A) {
         int[] res = new int[2];
-
+        SortedSet<Integer> set = new TreeSet<Integer>();
+        for (int i: A) {
+            set.add(i);
+        }
+        // Remove the maximum value; print the largest remaining item
+        res[0] = set.last();
+        set.remove(set.last());
+        res[1] = set.last();
+//        System.out.println(set.last());
         return res;
     }
 
@@ -63,6 +71,10 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         int[] test = {-1, 0, 1, 2, 3, 4, 5, 6, 8, 9};
-        System.out.println(findMissInt(test));
+//        System.out.println(findMissInt(test));
+
+        for (int i = 0; i <findTwoLargest(test).length ; i++) {
+            System.out.println(findTwoLargest(test)[i]);
+        }
     }
 }
