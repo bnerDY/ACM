@@ -1,6 +1,7 @@
 package problems;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -173,5 +174,32 @@ public class arraySolution {
             i++;
             j--;
         }
+    }
+
+    private static int[] twoSum(int[] numbers, int target) {
+        // problem 1
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int[] result = new int[2];
+        for (int i = 0; i < numbers.length; i++) {
+            if (map.containsKey(numbers[i])) {
+                result[0] = map.get(numbers[i]) + 1;
+                result[1] = i + 1;
+                break;
+            } else {
+                map.put(target - numbers[i], i);
+            }
+        }
+        return result;
+    }
+
+    private static int maxSubArray(int[] A) {
+        //problem 53
+        int newsum = A[0];
+        int max = A[0];
+        for (int i = 1; i < A.length; i++) {
+            newsum = Math.max(newsum + A[i], A[i]);
+            max = Math.max(max, newsum);
+        }
+        return max;
     }
 }
