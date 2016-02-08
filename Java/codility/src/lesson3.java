@@ -55,6 +55,23 @@ public class lesson3 {
         return minDif;
     }
 
+    /**
+     * PermMissingElem
+     * For example, given array A such that:
+     * A[0] = 2
+     * A[1] = 3
+     * A[2] = 1
+     * A[3] = 5
+     * the function should return 4, as it is the missing element.
+     */
+    public static int permMissingElem(int[] A){
+        int N = A.length + 1;
+        int total = N * (N + 1) / 2;
+        for (int i : A) {
+            total -= i;
+        }
+        return total;
+    }
 
     public static void main(String[] args) {
         //Test for TapeEquilibrium.
@@ -67,5 +84,7 @@ public class lesson3 {
         //Test for frogJump
         System.out.println(frogJmp(10, 85,30));
 
+        int[] num = {1,2,3,5};
+        System.out.println(permMissingElem(num));
     }
 }
