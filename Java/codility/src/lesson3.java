@@ -22,8 +22,14 @@ public class lesson3 {
      * after the second jump, at position 10 + 30 + 30 = 70
      * after the third jump, at position 10 + 30 + 30 + 30 = 100
      */
-    public int frogJmp(int X, int Y, int D){
-        int res = 0;
+    public static int frogJmp(int X, int Y, int D) {
+        int temp = (Y - X) % D;
+        int res;
+        if (temp != 0) {
+            res = (Y - X) / D + 1;
+        } else {
+            res = (Y - X) / D;
+        }
         return res;
     }
 
@@ -57,6 +63,9 @@ public class lesson3 {
         int tape = tapeEquilibrium(list);
         int test1 = tapeEquilibrium(test);
         System.out.println(test1);
+
+        //Test for frogJump
+        System.out.println(frogJmp(10, 85,30));
 
     }
 }
