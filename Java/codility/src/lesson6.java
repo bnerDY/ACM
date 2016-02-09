@@ -12,7 +12,6 @@ public class lesson6 {
 
     public static int maxProductofThree(int[] A) {
         Arrays.sort(A);
-
         int maxTriplet = 0;
         int N = A.length;
 
