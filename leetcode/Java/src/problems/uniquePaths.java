@@ -14,6 +14,7 @@ public class uniquePaths {
      */
 
     public static int uniquePaths(int m, int n) {
+//        Dynamic programming.
 //        if(m==0 || n==0) return 0;
 //        if(m==1 || n==1) return 1;
 //
@@ -38,23 +39,32 @@ public class uniquePaths {
 //
 //        return dp[m-1][n-1];
         return dfs(1, 1, m, n);
+//        if(m==1 || n==1) return 1;
+//        return uniquePaths(m-1, n) + uniquePaths(m, n-1);
     }
 
     private static int dfs(int row, int col, int m, int n) {
         if (row == m && col == n) {
+            System.out.println(row);
+            System.out.println(col);
+            System.out.println(1);
+            System.out.println("------");
             return 1;
         }
         if (row > m || col > n) {
+            System.out.println(row);
+            System.out.println(col);
+            System.out.println(0);
+            System.out.println("------");
             return 0;
         }
-
         return dfs(row + 1, col, m, n) + dfs(row, col + 1, m, n);
     }
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
-        System.out.println(uniquePaths(3, 5));
+        System.out.println(uniquePaths(2, 3));
 
     }
 }
