@@ -1,3 +1,5 @@
+package String;
+
 import java.util.Arrays;
 
 /**
@@ -6,6 +8,9 @@ import java.util.Arrays;
 public class twoStringsAreAnagrams {
 
     /**
+     *
+     * Example
+     * Given s="abcd", t="dcab", return true.
      * @param s: The first string
      * @param t: The second string
      * @return true or false
@@ -17,10 +22,8 @@ public class twoStringsAreAnagrams {
         }
         char[] ss = s.toCharArray();
         char[] tt = t.toCharArray();
-
         Arrays.sort(ss);
         Arrays.sort(tt);
-
         if (Arrays.equals(ss,tt)) {
             return true;
         } else {
