@@ -3,10 +3,7 @@
  */
 public class lesson3 {
 
-    /**
-     *  Time Complexity.
-     *  Lesson3.
-     */
+    //Time Complexity.
 
     /**
      * FrogJmp

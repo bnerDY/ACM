@@ -2,8 +2,8 @@
  * Created by Martin on 15/11/2015.
  */
 public class lesson1 {
+    //Iteration
     /**
-     * Lesson1 Iteration
      * Binary Gap
      * For example, given N = 1041 the function should return 5, because N has binary representation 10000010001
      * and so its longest binary gap is of length 5.

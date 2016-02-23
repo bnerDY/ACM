@@ -2,11 +2,7 @@
  * Created by Martin on 15/11/2015.
  */
 public class lesson4 {
-    /**
-     * Lesson 4 Counting Elements
-     *
-     */
-
+    //Counting Elements
     /**
      * For example, you are given integer X = 5 and array A such that:
      * A[0] = 1

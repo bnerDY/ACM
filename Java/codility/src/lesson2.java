@@ -5,8 +5,8 @@ import java.util.Map;
  * Created by Martin on 15/11/2015.
  */
 public class lesson2 {
+    //Arrays
     /**
-     * Lesson 2 arrays
      * OddOccurrencesInArray
      *
      * For example, given array A such that:
