@@ -10,6 +10,8 @@ public class reverseInt {
      * Example2: x = -123, return -321
      * @param x
      * @return
+     *
+     * new stringbuilder(str).reverse().toString();
      */
     public int reverseInt(int x) {
         //problem 7
