@@ -27,7 +27,7 @@ public class validParentheses {
         return (c1 == '(' && c2 == ')') || (c1 == '{' && c2 == '}')
                 || (c1 == '[' && c2 == ']');
     }
-    
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
