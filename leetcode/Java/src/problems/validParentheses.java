@@ -29,7 +29,7 @@ public class validParentheses {
                 }
             }
         }
-        return stack.isEmpty() ? true : false;
+        return stack.isEmpty();
     }
 
 //    Alternative solution.
