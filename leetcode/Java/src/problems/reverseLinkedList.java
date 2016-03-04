@@ -8,14 +8,6 @@ public class reverseLinkedList {
     /**
      * Reverse a singly linked list.
      */
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null)
             return head;

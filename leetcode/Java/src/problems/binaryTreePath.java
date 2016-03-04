@@ -23,16 +23,6 @@ import java.util.List;
  */
 public class binaryTreePath {
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     public static List<String> binaryTreePaths(TreeNode root) {
         List<String> res = new ArrayList<>();
         if (root == null) {

@@ -5,15 +5,6 @@ package problems;
  */
 public class symmetricTree {
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     public static boolean isSymmetric(TreeNode root) {
         // Problem 101. recursive.
         if(root == null){

@@ -24,16 +24,6 @@ import java.util.LinkedList;
 
 public class binaryTreeLevelOrderTraversal {
 
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
         //problem 102
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();

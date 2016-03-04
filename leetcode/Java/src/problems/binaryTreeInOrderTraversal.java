@@ -19,15 +19,6 @@ import java.util.List;
  return [1,3,2].
  */
 public class binaryTreeInOrderTraversal {
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
