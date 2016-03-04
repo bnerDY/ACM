@@ -1,4 +1,4 @@
-package problems;
+package problems.ADT;
 
 /**
  * Created by Martin on 04/03/2016.

@@ -1,5 +1,7 @@
 package problems;
 
+import problems.ADT.TreeNode;
+
 /**
  * Created by Martin on 15/06/2015.
  */

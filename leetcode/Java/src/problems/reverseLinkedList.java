@@ -1,5 +1,7 @@
 package problems;
 
+import problems.ADT.ListNode;
+
 /**
  * Created by Martin on 09/02/2016.
  */
