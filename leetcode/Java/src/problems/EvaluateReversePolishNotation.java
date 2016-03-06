@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Created by Martin on 03/03/2016.
  */
-public class EvaluateReversePolishNotation {
+public class evaluateReversePolishNotation {
 
     /**
      * Problem 150
