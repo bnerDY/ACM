@@ -1,5 +1,7 @@
 package problems;
 
+import problems.ADT.ListNode;
+
 /**
  * Created by Martin on 12/02/2016.
  */
@@ -9,13 +11,7 @@ public class addTwoNumbers {
      * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
      * Output: 7 -> 0 -> 8
      */
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-    }
+
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
