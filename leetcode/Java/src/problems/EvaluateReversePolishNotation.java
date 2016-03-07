@@ -19,7 +19,7 @@ public class evaluateReversePolishNotation {
      */
 
     public static int evalRPN(String[] tokens) {
-        //can be optimization
+        //can be optimized
         int res;
         LinkedList<String> stack = new LinkedList<>();
         for (int i = 0; i <tokens.length ; i++) {
