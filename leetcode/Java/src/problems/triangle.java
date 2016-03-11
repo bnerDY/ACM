@@ -20,6 +20,7 @@ public class triangle {
      */
 
     public int minimumTotal(int[][] triangle) {
+        //2-pass DP
         if (triangle == null || triangle.length == 0) {
             return -1;
         }

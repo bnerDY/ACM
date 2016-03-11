@@ -1,18 +1,12 @@
 package problems;
 
+import problems.ADT.TreeNode;
+
 /**
  * Created by Martin on 10/02/2016.
  */
 public class sameTree {
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) {
-            val = x;
-        }
-    }
     /**
      * Given two binary trees, write a function to check if they are equal or not.
      * Two binary trees are considered equal if they are structurally identical and the nodes have the same value.

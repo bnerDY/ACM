@@ -46,7 +46,7 @@ public class combination {
         for (int i = start; i <= n; i++) {
             item.add(i);
             dfs(n, k, i + 1, item, res);
-            item.remove(item.size() - 1);
+            item.remove(item.size() - 1);// remove unnecessary
         }
     }
 
