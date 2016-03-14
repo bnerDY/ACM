@@ -15,7 +15,8 @@ public class deleteNodeInALinkedList {
      */
 
     public static void deleteNode(ListNode node) {
-        
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 
     public static void main(String[] args) {
@@ -24,5 +25,11 @@ public class deleteNodeInALinkedList {
         test.next = new ListNode(2);
         test.next.next = new ListNode(3);
         test.next.next.next = new ListNode(4);
+
+        deleteNode(test.next);
+        while (test != null) {
+            System.out.println(test.val);
+            test = test.next;
+        }
     }
 }
