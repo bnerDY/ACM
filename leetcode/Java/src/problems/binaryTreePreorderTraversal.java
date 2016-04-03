@@ -51,8 +51,12 @@ public class binaryTreePreorderTraversal {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         TreeNode test = new TreeNode(1);
-        test.right = new TreeNode(2);
-        test.right.left = new TreeNode(3);
+        test.left = new TreeNode(2);
+        test.right = new TreeNode(3);
+        test.left.left = new TreeNode(4);
+        test.left.right = new TreeNode(5);
+        test.left.right.right = new TreeNode(7);
+        test.right.left = new TreeNode(6);
 
         List<Integer> res = preorderTraversal(test);
         System.out.println(res);
