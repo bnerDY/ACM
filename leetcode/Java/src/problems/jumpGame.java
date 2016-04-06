@@ -16,20 +16,41 @@ public class jumpGame {
      * @return
      */
     public static boolean canJump(int[] nums) {
-        if (nums.length <= 1)
+//        if (nums.length <= 1)  67/72 solution.
+//            return true;
+//        int init = nums[0];
+//        int length = nums.length - 1;
+//        while (true) {
+//            if (init < length) {
+//                if (nums[init] == 0) {
+//                    break;
+//                } else {
+//                    init += nums[init];
+//                }
+//            } else {
+//                return true;
+//            }
+//        }
+//        return false;
+
+        if(nums.length <= 1)
             return true;
-        int init = nums[0];
-        int length = nums.length - 1;
-        while (true) {
-            if (init < length) {
-                if (nums[init] == 0) {
-                    break;
-                } else {
-                    init += nums[init];
-                }
-            } else {
-                return true;
+
+        int max = nums[0]; //max stands for the largest index that can be reached.
+
+        for(int i=0; i<nums.length; i++){
+            //if not enough to go to next
+            if(max <= i && nums[i] == 0)
+                return false;
+
+            //update max
+            if(i + nums[i] > max){
+                max = i + nums[i];
             }
+
+            //max is enough to reach the end
+            if(max >= nums.length-1)
+                return true;
         }
         return false;
     }
