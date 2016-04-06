@@ -15,7 +15,7 @@ public class removeDuplicatesFromSortedArray {
      * @return
      */
 
-    public static int solution(int[] A) {
+    public static int remove(int[] A) {
         // problem 26
         if (A == null || A.length == 0)
             return 0;
@@ -31,6 +31,7 @@ public class removeDuplicatesFromSortedArray {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-
+        int[] test = {1,1,2,3,4};
+        System.out.println(remove(test));
     }
 }

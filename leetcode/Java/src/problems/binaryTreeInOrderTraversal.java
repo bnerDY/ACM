@@ -28,9 +28,11 @@ public class binaryTreeInOrderTraversal {
             return res;
         }
         if(root.left != null){
+            res.add(root.left.val);
             inorderTraversal(root.left);
         }
         if(root.right != null){
+            res.add(root.right.val);
             inorderTraversal(root.right);
         }
         return res;
