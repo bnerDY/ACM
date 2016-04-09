@@ -3,7 +3,7 @@ package problems;
 import problems.ADT.TreeNode;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 //TODO
 /**
  * Created by Martin on 10/02/2016.
@@ -21,21 +21,45 @@ import java.util.List;
  return [1,3,2].
  */
 public class binaryTreeInOrderTraversal {
+//    static List<Integer> res = new ArrayList<>();
+//
+//    public static List<Integer> inorderTraversal(TreeNode root) {
+//        if(root == null){
+//            return res;
+//        }
+//        if(root !=null){
+//            traversal(root);
+//        }
+//
+//        return res;
+//    }
+//
+//    public static void traversal(TreeNode p){
+//        if(p.left!=null)
+//            traversal(p.left);
+//
+//        res.add(p.val);
+//
+//        if(p.right!=null)
+//            traversal(p.right);
+//    }
 
-    public static List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if(root == null){
-            return res;
+//    non-recursive way.
+    public static ArrayList<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        TreeNode curt = root;
+        while (curt != null || !stack.empty()) {
+            while (curt != null) {
+                stack.add(curt);
+                curt = curt.left;
+            }
+            curt = stack.peek();
+            stack.pop();
+            result.add(curt.val);
+            curt = curt.right;
         }
-        if(root.left != null){
-            res.add(root.left.val);
-            inorderTraversal(root.left);
-        }
-        if(root.right != null){
-            res.add(root.right.val);
-            inorderTraversal(root.right);
-        }
-        return res;
+        return result;
     }
 
     public static void main(String[] args) {

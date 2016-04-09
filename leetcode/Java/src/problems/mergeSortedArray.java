@@ -37,6 +37,13 @@ public class mergeSortedArray {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-
+        int nums1[] = new int[4];
+        nums1[0] = 1;
+        nums1[1] = 2;
+        int m = 3;
+        int nums2[] = {1};
+        int n = 1;
+        merge(nums1, m, nums2, n);
+        System.out.println(nums1);
     }
 }
