@@ -9,7 +9,7 @@ public class symmetricTree {
 
     public static boolean isSymmetric(TreeNode root) {
         // Problem 101. recursive.
-        if(root == null){
+        if (root == null) {
             return true;
         }
         return isSymmetricTree(root.left, root.right);
