@@ -3,7 +3,7 @@ package problems;
 import problems.ADT.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.List;
 //TODO
 /**
  * Created by Martin on 10/02/2016.
@@ -21,46 +21,46 @@ import java.util.Stack;
  return [1,3,2].
  */
 public class binaryTreeInOrderTraversal {
-//    static List<Integer> res = new ArrayList<>();
-//
-//    public static List<Integer> inorderTraversal(TreeNode root) {
-//        if(root == null){
-//            return res;
-//        }
-//        if(root !=null){
-//            traversal(root);
-//        }
-//
-//        return res;
-//    }
-//
-//    public static void traversal(TreeNode p){
-//        if(p.left!=null)
-//            traversal(p.left);
-//
-//        res.add(p.val);
-//
-//        if(p.right!=null)
-//            traversal(p.right);
-//    }
+    static List<Integer> res = new ArrayList<>();
+
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        if(root == null){
+            return res;
+        }
+        if(root !=null){
+            traversal(root);
+        }
+
+        return res;
+    }
+
+    public static void traversal(TreeNode p){
+        if(p.left!=null)
+            traversal(p.left);
+
+        res.add(p.val);
+
+        if(p.right!=null)
+            traversal(p.right);
+    }
 
 //    non-recursive way.
-    public static ArrayList<Integer> inorderTraversal(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
-        ArrayList<Integer> result = new ArrayList<>();
-        TreeNode curt = root;
-        while (curt != null || !stack.empty()) {
-            while (curt != null) {
-                stack.add(curt);
-                curt = curt.left;
-            }
-            curt = stack.peek();
-            stack.pop();
-            result.add(curt.val);
-            curt = curt.right;
-        }
-        return result;
-    }
+//    public static ArrayList<Integer> inorderTraversal(TreeNode root) {
+//        Stack<TreeNode> stack = new Stack<>();
+//        ArrayList<Integer> result = new ArrayList<>();
+//        TreeNode curt = root;
+//        while (curt != null || !stack.empty()) {
+//            while (curt != null) {
+//                stack.add(curt);
+//                curt = curt.left;
+//            }
+//            curt = stack.peek();
+//            stack.pop();
+//            result.add(curt.val);
+//            curt = curt.right;
+//        }
+//        return result;
+//    }
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
