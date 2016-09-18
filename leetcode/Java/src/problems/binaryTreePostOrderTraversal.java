@@ -30,5 +30,27 @@ public class binaryTreePostOrderTraversal {
             traversal(p.right);
         res.add(p.val);
     }
+//    public static List<Integer> postOrderTraversal(TreeNode root) {
+//        Stack<TreeNode> stack = new Stack<>();
+//        List<Integer> res = new ArrayList<>();
+//
+//        if (root == null) {
+//            return res;
+//        }
+//
+//        stack.push(root);
+//        while (!stack.empty()) {
+//            //left -> right
+//            TreeNode node = stack.pop();
+//            if (node.right != null) {
+//                stack.push(node.right);
+//            }
+//            if (node.left != null) {
+//                stack.push(node.left);
+//            }
+//            res.add(node.val);
+//        }
+//        return res;
+//    }
 
 }

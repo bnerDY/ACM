@@ -47,19 +47,25 @@ public class binaryTreeInOrderTraversal {
 //    non-recursive way.
 //    public static ArrayList<Integer> inorderTraversal(TreeNode root) {
 //        Stack<TreeNode> stack = new Stack<>();
-//        ArrayList<Integer> result = new ArrayList<>();
-//        TreeNode curt = root;
-//        while (curt != null || !stack.empty()) {
-//            while (curt != null) {
-//                stack.add(curt);
-//                curt = curt.left;
-//            }
-//            curt = stack.peek();
-//            stack.pop();
-//            result.add(curt.val);
-//            curt = curt.right;
+//        List<Integer> res = new ArrayList<>();
+//
+//        if (root == null) {
+//            return res;
 //        }
-//        return result;
+//
+//        stack.push(root);
+//        while (!stack.empty()) {
+//            //left -> right
+//            TreeNode node = stack.pop();
+//            if (node.right != null) {
+//                stack.push(node.right);
+//            }
+//            res.add(node.val);
+//            if (node.left != null) {
+//                stack.push(node.left);
+//            }
+//        }
+//        return res;
 //    }
 
     public static void main(String[] args) {
