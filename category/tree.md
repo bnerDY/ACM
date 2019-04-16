@@ -465,7 +465,7 @@ public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
 ```
 
 ```java
-ArrayList<ArrayList<Integer>> ZigZag(TreeNode pRoot) {
+ArrayList<ArrayList<Integer>> levelOrder(TreeNode pRoot) {
     ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
     Queue<TreeNode> queue = new LinkedList<>();
     queue.add(pRoot);
@@ -488,7 +488,7 @@ ArrayList<ArrayList<Integer>> ZigZag(TreeNode pRoot) {
 ```
 
 ```java
-public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+public ArrayList<ArrayList<Integer>> ZigZag(TreeNode pRoot) {
     ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
     Queue<TreeNode> queue = new LinkedList<>();
     queue.add(pRoot);
