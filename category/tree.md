@@ -367,7 +367,7 @@ public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
 ```
 
 ```java
-ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+ArrayList<ArrayList<Integer>> ZigZag(TreeNode pRoot) {
     ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
     Queue<TreeNode> queue = new LinkedList<>();
     queue.add(pRoot);
