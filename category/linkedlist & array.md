@@ -181,6 +181,23 @@ public ListNode deleteDuplicates(ListNode head) {
 }
 ```
 
+```java
+public ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null) return head;
+        if (head.val == head.next.val) {
+            ListNode node = head.next;
+            while (node != null && node.val == head.val) {
+                node = node.next;
+            }
+            return deleteDuplicates(node);
+
+        }else {
+            head.next = deleteDuplicates(head.next);
+            return head;
+        }
+    }
+```
+
 #  删除链表的倒数第 n 个节点
 
 [19. Remove Nth Node From End of List (Medium)](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
