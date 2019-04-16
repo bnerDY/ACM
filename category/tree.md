@@ -33,6 +33,7 @@
   - [在二叉查找树中寻找两个节点，使它们的和为一个给定值](#在二叉查找树中寻找两个节点，使它们的和为一个给定值)
   - [在二叉查找树中查找两个节点之差的最小绝对值](#在二叉查找树中查找两个节点之差的最小绝对值)
   - [寻找二叉查找树中出现次数最多的值](#寻找二叉查找树中出现次数最多的值)
+  - [寻找二叉查找树中路径最大值](#寻找二叉查找树中路径最大值)
 - [Trie](#trie)
   _ [实现一个 Trie](#实现一个-trie)
   _ [实现一个 Trie，用来求前缀和](#实现一个-trie，用来求前缀和)
@@ -869,6 +870,25 @@ private void inOrder(TreeNode node, List<Integer> nums) {
     preNode = node;
     inOrder(node.right, nums);
 }
+```
+
+## 寻找二叉查找树中路径最大值
+```java
+ private int res = Integer.MIN_VALUE;
+    
+    public int maxPathSum(TreeNode root) {
+        if(root == null) return 0;
+        helper(root);
+        return res;
+    }
+    public int helper(TreeNode root){
+        if (root == null) return 0;
+        int left = Math.max(helper(root.left), 0);
+        int right = Math.max(helper(root.right), 0);
+        res = Math.max(res, root.val + left + right);
+        return root.val + (left > right ? left : right);
+    }
+
 ```
 
 # Trie
