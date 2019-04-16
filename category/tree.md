@@ -346,6 +346,76 @@ public int findSecondMinimumValue(TreeNode root) {
 
 使用 BFS 进行层次遍历。不需要使用两个队列来分别存储当前层的节点和下一层的节点，因为在开始遍历一层的节点时，当前队列中的节点数就是当前层的节点数，只要控制遍历这么多节点数，就能保证这次遍历的都是当前层的节点。
 
+```java
+public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+    Queue<TreeNode> queue = new LinkedList<>();
+    ArrayList<Integer> ret = new ArrayList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+        int cnt = queue.size();
+        while (cnt-- > 0) {
+            TreeNode t = queue.poll();
+            if (t == null)
+                continue;
+            ret.add(t.val);
+            queue.add(t.left);
+            queue.add(t.right);
+        }
+    }
+    return ret;
+}
+```
+
+```java
+ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+    ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(pRoot);
+    while (!queue.isEmpty()) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int cnt = queue.size();
+        while (cnt-- > 0) {
+            TreeNode node = queue.poll();
+            if (node == null)
+                continue;
+            list.add(node.val);
+            queue.add(node.left);
+            queue.add(node.right);
+        }
+        if (list.size() != 0)
+            ret.add(list);
+    }
+    return ret;
+}
+```
+
+```java
+public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+    ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(pRoot);
+    boolean reverse = false;
+    while (!queue.isEmpty()) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int cnt = queue.size();
+        while (cnt-- > 0) {
+            TreeNode node = queue.poll();
+            if (node == null)
+                continue;
+            list.add(node.val);
+            queue.add(node.left);
+            queue.add(node.right);
+        }
+        if (reverse)
+            Collections.reverse(list);
+        reverse = !reverse;
+        if (list.size() != 0)
+            ret.add(list);
+    }
+    return ret;
+}
+```
+
 ## 一棵树每层节点的平均数
 
 [637. Average of Levels in Binary Tree (Easy)](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/)

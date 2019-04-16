@@ -15,6 +15,24 @@
 * [第一个错误的版本](#第一个错误的版本)
 * [旋转数组的最小数字](#旋转数组的最小数字)
 * [查找区间](#查找区间)
+* [快速选择](#快速选择)
+* [堆排序](#堆排序)
+    * [Kth Element](#kth-element)
+* [40. 最小的 K 个数](#40-最小的-k-个数)
+    * [解题思路](#解题思路)
+        * [快速选择](#快速选择)
+        * [大小为 K 的最小堆](#大小为-k-的最小堆)
+* [桶排序](#桶排序)
+    * [出现频率最多的 k 个数](#出现频率最多的-k-个数)
+    * [按照字符出现次数对字符串排序](#按照字符出现次数对字符串排序)
+* [41.1 数据流中的中位数](#411-数据流中的中位数)
+    * [题目描述](#题目描述)
+    * [解题思路](#解题思路)
+* [39. 数组中出现次数超过一半的数字](#39-数组中出现次数超过一半的数字)
+    * [解题思路](#解题思路)
+* [59. 滑动窗口的最大值](#59-滑动窗口的最大值)
+    * [题目描述](#题目描述)
+    * [解题思路](#解题思路)
 <!-- GFM-TOC -->
 
 
@@ -508,5 +526,362 @@ private int binarySearch(int[] nums, int target) {
         }
     }
     return l;
+}
+```
+
+## Kth Element
+
+[215. Kth Largest Element in an Array (Medium)](https://leetcode.com/problems/kth-largest-element-in-an-array/description/)
+
+题目描述：找到第 k 大的元素。
+
+**排序** ：时间复杂度 O(NlogN)，空间复杂度 O(1)
+
+```java
+public int findKthLargest(int[] nums, int k) {
+    Arrays.sort(nums);
+    return nums[nums.length - k];
+}
+```
+
+**堆排序** ：时间复杂度 O(NlogK)，空间复杂度 O(K)。
+
+```java
+public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>(); // 小顶堆
+    for (int val : nums) {
+        pq.add(val);
+        if (pq.size() > k)  // 维护堆的大小为 K
+            pq.poll();
+    }
+    return pq.peek();
+}
+```
+**快速选择** ：时间复杂度 O(N)，空间复杂度 O(1)
+
+```java
+public int findKthLargest(int[] nums, int k) {
+    k = nums.length - k;
+    int l = 0, h = nums.length - 1;
+    while (l < h) {
+        int j = partition(nums, l, h);
+        if (j == k) {
+            break;
+        } else if (j < k) {
+            l = j + 1;
+        } else {
+            h = j - 1;
+        }
+    }
+    return nums[k];
+}
+
+private int partition(int[] a, int l, int h) {
+    int i = l, j = h + 1;
+    while (true) {
+        while (a[++i] < a[l] && i < h) ;
+        while (a[--j] > a[l] && j > l) ;
+        if (i >= j) {
+            break;
+        }
+        swap(a, i, j);
+    }
+    swap(a, l, j);
+    return j;
+}
+
+private void swap(int[] a, int i, int j) {
+    int t = a[i];
+    a[i] = a[j];
+    a[j] = t;
+}
+```
+
+# 40. 最小的 K 个数
+
+[NowCoder](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+## 解题思路
+
+### 快速选择
+
+- 复杂度：O(N) + O(1)
+- 只有当允许修改数组元素时才可以使用
+
+快速排序的 partition() 方法，会返回一个整数 j 使得 a[l..j-1] 小于等于 a[j]，且 a[j+1..h] 大于等于 a[j]，此时 a[j] 就是数组的第 j 大元素。可以利用这个特性找出数组的第 K 个元素，这种找第 K 个元素的算法称为快速选择算法。
+
+```java
+public ArrayList<Integer> GetLeastNumbers_Solution(int[] nums, int k) {
+    ArrayList<Integer> ret = new ArrayList<>();
+    if (k > nums.length || k <= 0)
+        return ret;
+    findKthSmallest(nums, k - 1);
+    /* findKthSmallest 会改变数组，使得前 k 个数都是最小的 k 个数 */
+    for (int i = 0; i < k; i++)
+        ret.add(nums[i]);
+    return ret;
+}
+
+public void findKthSmallest(int[] nums, int k) {
+    int l = 0, h = nums.length - 1;
+    while (l < h) {
+        int j = partition(nums, l, h);
+        if (j == k)
+            break;
+        if (j > k)
+            h = j - 1;
+        else
+            l = j + 1;
+    }
+}
+
+private int partition(int[] nums, int l, int h) {
+    int p = nums[l];     /* 切分元素 */
+    int i = l, j = h + 1;
+    while (true) {
+        while (i != h && nums[++i] < p) ;
+        while (j != l && nums[--j] > p) ;
+        if (i >= j)
+            break;
+        swap(nums, i, j);
+    }
+    swap(nums, l, j);
+    return j;
+}
+
+private void swap(int[] nums, int i, int j) {
+    int t = nums[i];
+    nums[i] = nums[j];
+    nums[j] = t;
+}
+```
+
+### 大小为 K 的最小堆
+
+- 复杂度：O(NlogK) + O(K)
+- 特别适合处理海量数据
+
+应该使用大顶堆来维护最小堆，而不能直接创建一个小顶堆并设置一个大小，企图让小顶堆中的元素都是最小元素。
+
+维护一个大小为 K 的最小堆过程如下：在添加一个元素之后，如果大顶堆的大小大于 K，那么需要将大顶堆的堆顶元素去除。
+
+```java
+public ArrayList<Integer> GetLeastNumbers_Solution(int[] nums, int k) {
+    if (k > nums.length || k <= 0)
+        return new ArrayList<>();
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+    for (int num : nums) {
+        maxHeap.add(num);
+        if (maxHeap.size() > k)
+            maxHeap.poll();
+    }
+    return new ArrayList<>(maxHeap);
+}
+```
+
+# 桶排序
+
+## 出现频率最多的 k 个数
+
+[347. Top K Frequent Elements (Medium)](https://leetcode.com/problems/top-k-frequent-elements/description/)
+
+```html
+Given [1,1,1,2,2,3] and k = 2, return [1,2].
+```
+
+设置若干个桶，每个桶存储出现频率相同的数，并且桶的下标代表桶中数出现的频率，即第 i 个桶中存储的数出现的频率为 i。
+
+把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。
+
+```java
+public List<Integer> topKFrequent(int[] nums, int k) {
+    Map<Integer, Integer> frequencyForNum = new HashMap<>();
+    for (int num : nums) {
+        frequencyForNum.put(num, frequencyForNum.getOrDefault(num, 0) + 1);
+    }
+    List<Integer>[] buckets = new ArrayList[nums.length + 1];
+    for (int key : frequencyForNum.keySet()) {
+        int frequency = frequencyForNum.get(key);
+        if (buckets[frequency] == null) {
+            buckets[frequency] = new ArrayList<>();
+        }
+        buckets[frequency].add(key);
+    }
+    List<Integer> topK = new ArrayList<>();
+    for (int i = buckets.length - 1; i >= 0 && topK.size() < k; i--) {
+        if (buckets[i] == null) {
+            continue;
+        }
+        if (buckets[i].size() <= (k - topK.size())) {
+            topK.addAll(buckets[i]);
+        } else {
+            topK.addAll(buckets[i].subList(0, k - topK.size()));
+        }
+    }
+    return topK;
+}
+```
+
+## 按照字符出现次数对字符串排序
+
+[451. Sort Characters By Frequency (Medium)](https://leetcode.com/problems/sort-characters-by-frequency/description/)
+
+```html
+Input:
+"tree"
+
+Output:
+"eert"
+
+Explanation:
+'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+```
+
+```java
+public String frequencySort(String s) {
+    Map<Character, Integer> frequencyForNum = new HashMap<>();
+    for (char c : s.toCharArray())
+        frequencyForNum.put(c, frequencyForNum.getOrDefault(c, 0) + 1);
+
+    List<Character>[] frequencyBucket = new ArrayList[s.length() + 1];
+    for (char c : frequencyForNum.keySet()) {
+        int f = frequencyForNum.get(c);
+        if (frequencyBucket[f] == null) {
+            frequencyBucket[f] = new ArrayList<>();
+        }
+        frequencyBucket[f].add(c);
+    }
+    StringBuilder str = new StringBuilder();
+    for (int i = frequencyBucket.length - 1; i >= 0; i--) {
+        if (frequencyBucket[i] == null) {
+            continue;
+        }
+        for (char c : frequencyBucket[i]) {
+            for (int j = 0; j < i; j++) {
+                str.append(c);
+            }
+        }
+    }
+    return str.toString();
+}
+```
+
+# 41.1 数据流中的中位数
+
+[NowCoder](https://www.nowcoder.com/practice/9be0172896bd43948f8a32fb954e1be1?tpId=13&tqId=11216&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+## 题目描述
+
+如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。
+
+## 解题思路
+
+```java
+/* 大顶堆，存储左半边元素 */
+private PriorityQueue<Integer> left = new PriorityQueue<>((o1, o2) -> o2 - o1);
+/* 小顶堆，存储右半边元素，并且右半边元素都大于左半边 */
+private PriorityQueue<Integer> right = new PriorityQueue<>();
+/* 当前数据流读入的元素个数 */
+private int N = 0;
+
+public void Insert(Integer val) {
+    /* 插入要保证两个堆存于平衡状态 */
+    if (N % 2 == 0) {
+        /* N 为偶数的情况下插入到右半边。
+         * 因为右半边元素都要大于左半边，但是新插入的元素不一定比左半边元素来的大，
+         * 因此需要先将元素插入左半边，然后利用左半边为大顶堆的特点，取出堆顶元素即为最大元素，此时插入右半边 */
+        left.add(val);
+        right.add(left.poll());
+    } else {
+        right.add(val);
+        left.add(right.poll());
+    }
+    N++;
+}
+
+public Double GetMedian() {
+    if (N % 2 == 0)
+        return (left.peek() + right.peek()) / 2.0;
+    else
+        return (double) right.peek();
+}
+```
+
+
+# 39. 数组中出现次数超过一半的数字
+
+[NowCoder](https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&tqId=11181&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+## 解题思路
+
+多数投票问题，可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(N)。
+
+使用 cnt 来统计一个元素出现的次数，当遍历到的元素和统计元素相等时，令 cnt++，否则令 cnt--。如果前面查找了 i 个元素，且 cnt == 0，说明前 i 个元素没有 majority，或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话 cnt 就一定不会为 0 。此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。
+
+```java
+public int MoreThanHalfNum_Solution(int[] nums) {
+    int majority = nums[0];
+    for (int i = 1, cnt = 1; i < nums.length; i++) {
+        cnt = nums[i] == majority ? cnt + 1 : cnt - 1;
+        if (cnt == 0) {
+            majority = nums[i];
+            cnt = 1;
+        }
+    }
+    int cnt = 0;
+    for (int val : nums)
+        if (val == majority)
+            cnt++;
+    return cnt > nums.length / 2 ? majority : 0;
+}
+```
+
+# 59. 滑动窗口的最大值
+
+[NowCoder](https://www.nowcoder.com/practice/1624bc35a45c42c0bc17d17fa0cba788?tpId=13&tqId=11217&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+## 题目描述
+
+给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。
+
+例如，如果输入数组 {2, 3, 4, 2, 6, 2, 5, 1} 及滑动窗口的大小 3，那么一共存在 6 个滑动窗口，他们的最大值分别为 {4, 4, 6, 6, 6, 5}。
+
+## 解题思路
+
+```java
+public int[] maxSlidingWindow(int[] nums, int k) {
+        if (k == 0) {
+            return nums;
+        }
+        PriorityQueue<Integer> queue = new PriorityQueue<>(k, (a, b) -> b - a);
+        for (int i = 0; i < k; i++) {
+            queue.add(nums[i]);
+        }
+
+        int[] res = new int[nums.length - k + 1];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = queue.peek();
+            queue.remove(nums[i]);
+            if (i + k < nums.length) {
+                queue.add(nums[i + k]);
+            }
+        }
+        return res;
+    }
+```
+
+
+```java
+public int maxProfit(int[] prices) {
+    int n = prices.length;
+    if (n == 0) return 0;
+    int soFarMin = prices[0];
+    int max = 0;
+    for (int i = 1; i < n; i++) {
+        if (soFarMin > prices[i]) soFarMin = prices[i];
+        else max = Math.max(max, prices[i] - soFarMin);
+    }
+    return max;
 }
 ```
